@@ -1,5 +1,6 @@
 import { Table } from "@radix-ui/themes";
 import { Skeleton } from "@/app/components";
+import "react-loading-skeleton/dist/skeleton.css";
 import React from "react";
 import IssuesActions from "./IssuesActions";
 

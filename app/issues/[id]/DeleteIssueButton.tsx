@@ -1,7 +1,7 @@
 "use client";
 
 import { TrashIcon } from "@radix-ui/react-icons";
-import { AlertDialog, Button, Flex } from "@radix-ui/themes";
+import { AlertDialog, Button, Flex, Spinner } from "@radix-ui/themes";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -9,12 +9,15 @@ import { useState } from "react";
 const DeleteIssueButton = ({ issueId }: { issueId: number }) => {
   const router = useRouter();
   const [error, setError] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
   const handleDeleteIssue = async () => {
     try {
+      setIsDeleting(true);
       await axios.delete("/api/issues/" + issueId);
       router.push("/issues");
       router.refresh();
     } catch (error) {
+      setIsDeleting(false);
       console.error(error);
       setError(true);
     }
@@ -23,8 +26,8 @@ const DeleteIssueButton = ({ issueId }: { issueId: number }) => {
     <>
       <AlertDialog.Root>
         <AlertDialog.Trigger>
-          <Button color="red">
-            <TrashIcon />
+          <Button color="red" disabled={isDeleting}>
+            {isDeleting ? <Spinner /> : <TrashIcon />}
             Delete Issue
           </Button>
         </AlertDialog.Trigger>

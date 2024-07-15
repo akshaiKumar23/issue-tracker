@@ -6,6 +6,7 @@ import "@radix-ui/themes/styles.css";
 import { Container, Theme, ThemePanel } from "@radix-ui/themes";
 import "./theme-config.css";
 import AuthProvider from "./auth/Provider";
+
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",

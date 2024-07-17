@@ -7,7 +7,7 @@ import { IssueStatusBadge } from "./components";
 const LatestIssues = async () => {
   const issues = await prisma.issue.findMany({
     orderBy: {
-      createdAt: "desc",
+      createdAt: "asc",
     },
     take: 5,
     include: {

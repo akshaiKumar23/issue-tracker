@@ -56,6 +56,7 @@ export async function PATCH(
       title: body.title,
       description: body.description,
       assignedToUserId: assignedToUserId,
+      status: body.status,
     },
   });
 

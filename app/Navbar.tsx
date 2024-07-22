@@ -14,6 +14,8 @@ import { usePathname } from "next/navigation";
 import React from "react";
 import { AiFillBug } from "react-icons/ai";
 import { Skeleton } from "@/app/components";
+import { Toggle } from "@/components/Toggle";
+import { useTheme } from "next-themes";
 
 const Navbar = () => {
   return (
@@ -45,14 +47,15 @@ const NavLinks = () => {
       href: "/issues",
     },
   ];
+  const { theme } = useTheme();
   return (
-    <ul className="flex space-x-6">
+    <ul className="flex space-x-6 justify-center items-center">
       {links.map((link) => (
         <li key={link.label}>
           <Link
             className={classnames({
               "nav-link": true,
-              "!text-zinc-900 font-bold": link.href === currentPath,
+              "font-bold": link.href === currentPath,
             })}
             href={link.href}
           >
@@ -60,6 +63,7 @@ const NavLinks = () => {
           </Link>
         </li>
       ))}
+      <Toggle />
     </ul>
   );
 };
